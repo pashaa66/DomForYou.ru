@@ -19,6 +19,7 @@ def main():
 def index():
     return render_template('base.html', title='AAAA')
 
+
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
@@ -38,8 +39,6 @@ def login():
                                message="Неправильный логин или пароль",
                                form=form)
     return render_template('login.html', title='Авторизация', form=form)
-
-
 
 
 if __name__ == '__main__':
