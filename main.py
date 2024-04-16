@@ -2,8 +2,9 @@ from flask import Flask, render_template, redirect, request, abort
 from data import db_session
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from data.users import User
+from data.realtors import Realtor
 from forms.login import LoginForm
-from forms.register import RegisterFormUser
+from forms.register import RegisterFormUser, RegisterFormRealtor
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -33,6 +34,10 @@ def logout():
     logout_user()
     return redirect("/")
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    return render_template('register_menu.html', title='Регистрация')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -49,17 +54,17 @@ def login():
     return render_template('login.html', title='Авторизация', form=form)
 
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
+@app.route('/register_buyer', methods=['GET', 'POST'])
+def register_buyer():
     form = RegisterFormUser()
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('register.html', title='Регистрация',
+            return render_template('register_buyer.html', title='Регистрация',
                                    form=form,
                                    message="Пароли не совпадают")
         db_sess = db_session.create_session()
         if db_sess.query(User).filter(User.email == form.email.data).first():
-            return render_template('register.html', title='Регистрация',
+            return render_template('register_buyer.html', title='Регистрация',
                                    form=form,
                                    message="Такой пользователь уже есть")
         user = User(
@@ -72,8 +77,34 @@ def register():
         db_sess.add(user)
         db_sess.commit()
         return redirect('/login')
-    return render_template('register.html', title='Регистрация', form=form)
+    return render_template('register_buyer.html', title='Регистрация', form=form)
 
+@app.route('/register_realtor', methods=['GET', 'POST'])
+def register_realtor():
+    form = RegisterFormRealtor()
+    if form.validate_on_submit():
+        if form.password.data != form.password_again.data:
+            return render_template('register_realtor.html', title='Регистрация',
+                                   form=form,
+                                   message="Пароли не совпадают")
+        db_sess = db_session.create_session()
+        if db_sess.query(Realtor).filter(Realtor.email == form.email.data).first():
+            return render_template('register_buyer.html', title='Регистрация',
+                                   form=form,
+                                   message="Такой пользователь уже есть")
+        realtor = Realtor(
+            name=form.name.data,
+            surname=form.surname.data,
+            age=form.age.data,
+            email=form.email.data,
+            phone_number=form.phone_number.data,
+            experience=form.experience.data
+        )
+        realtor.set_password(form.password.data)
+        db_sess.add(realtor)
+        db_sess.commit()
+        return redirect('/login')
+    return render_template('register_realtor.html', title='Регистрация', form=form)
 
 if __name__ == '__main__':
     main()
