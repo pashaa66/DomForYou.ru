@@ -3,7 +3,8 @@
 {% block content %}
 <h1>Объявления</h1>
 {% if current_user.is_authenticated %}
-    <h2>{{current_user.name}}</h2>
-    <a class="btn btn-secondary" href="/creating_an_advertisement">Создать объявление</a>
+    {% if current_user.role == 'realtor' %}
+        <a class="btn btn-primary" href="/creating_an_advertisement">Создать объявление</a>
+    {% endif %}
 {% endif %}
 {% endblock %}
