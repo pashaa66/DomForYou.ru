@@ -2,7 +2,6 @@ from flask import Flask, render_template, redirect, request, abort
 from data import db_session
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from data.users import User
-from data.realtors import Realtor
 from forms.login import LoginForm
 from forms.register import RegisterFormUser, RegisterFormRealtor
 
@@ -67,14 +66,15 @@ def register_buyer():
             return render_template('register_buyer.html', title='Регистрация',
                                    form=form,
                                    message="Такой пользователь уже есть")
-        user = User(
+        buyer = User(
             name=form.name.data,
             surname=form.surname.data,
             age=form.age.data,
             email=form.email.data,
+            role='buyer'
         )
-        user.set_password(form.password.data)
-        db_sess.add(user)
+        buyer.set_password(form.password.data)
+        db_sess.add(buyer)
         db_sess.commit()
         return redirect('/login')
     return render_template('register_buyer.html', title='Регистрация', form=form)
@@ -88,17 +88,18 @@ def register_realtor():
                                    form=form,
                                    message="Пароли не совпадают")
         db_sess = db_session.create_session()
-        if db_sess.query(Realtor).filter(Realtor.email == form.email.data).first():
-            return render_template('register_buyer.html', title='Регистрация',
+        if db_sess.query(User).filter(User.email == form.email.data).first():
+            return render_template('register_realtor.html', title='Регистрация',
                                    form=form,
                                    message="Такой пользователь уже есть")
-        realtor = Realtor(
+        realtor = User(
             name=form.name.data,
             surname=form.surname.data,
             age=form.age.data,
             email=form.email.data,
             phone_number=form.phone_number.data,
-            experience=form.experience.data
+            experience=form.experience.data,
+            role='realtor'
         )
         realtor.set_password(form.password.data)
         db_sess.add(realtor)
