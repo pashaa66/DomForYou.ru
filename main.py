@@ -3,6 +3,7 @@ from data import db_session
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from data.users import User
 from forms.login import LoginForm
+from forms.announcement import CreateAnnouncementForm
 from forms.register import RegisterFormUser, RegisterFormRealtor
 
 app = Flask(__name__)
@@ -37,7 +38,10 @@ def logout():
 def register():
     return render_template('register_menu.html', title='Регистрация')
 
-
+@app.route('/creating_an_advertisement', methods=['GET', 'POST'])
+def creating_an_advertisement():
+    form = CreateAnnouncementForm()
+    return render_template('creating_an_advertisement.html', title='Создание объявления', form=form)
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
