@@ -50,16 +50,9 @@
 * age
 * email
 * photo
-* hashed_password
-* created_date
-### Таблица realtors:
-* id
-* name
-* surname
-* age
-* email
 * phone_number
 * experience(стаж работы)
+* role
 * hashed_password
 * created_date
 ### Таблица objects:
@@ -70,6 +63,15 @@
 * price
 * location
 * photo
+* id_realtor
 
-
+# **Пояснительная записка**
+**"DomForYou.ru"**. Автор - Петров Павел
+### Описание 
+Данный проект представляет собой cайт агентства недвижимости, где риэлтор может добавлять объекты недвижимости, а пользователи могут их просматривать и фильтровать по некоторым параметрам
+### Библиотеки
+* flask, flask_login
+* flask_wtf, wtforms
+* sqlalchemy, sqlalchemy_serializer
+* datetime
 
