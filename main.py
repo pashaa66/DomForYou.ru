@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, abort
 from data import db_session
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from data.users import User
+# from data.announcements import Announcement
 from forms.login import LoginForm
 from forms.announcement import CreateAnnouncementForm
 from forms.register import RegisterFormUser, RegisterFormRealtor
@@ -19,6 +20,9 @@ def main():
 
 @app.route("/")
 def index():
+    db_sess = db_session.create_session()
+    # announcement = db_sess.query(Announcement).all()
+    # , announcement=announcement
     return render_template('index.html', title='Объявления')
 
 
@@ -41,7 +45,10 @@ def register():
 @app.route('/creating_an_advertisement', methods=['GET', 'POST'])
 def creating_an_advertisement():
     form = CreateAnnouncementForm()
-    return render_template('creating_an_advertisement.html', title='Создание объявления', form=form)
+    if form.validate_on_submit():
+        print(form.files.data, form.title.data, form.price.data, form.advertisement_type.data)
+        return redirect("/")
+    return render_template('creating_an_announcement.html', title='Создание объявления', form=form)
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -110,6 +117,14 @@ def register_realtor():
         db_sess.commit()
         return redirect('/login')
     return render_template('register_realtor.html', title='Регистрация', form=form)
+
+# @app.route('/announcement/<int:id>')
+# def announcement(id):
+#     db_sess = db_session.create_session()
+#     current_announcement = db_sess.query(Announcement).filter(Announcement.id == id).first()
+#     if not current_announcement:
+#         abort(404)
+#     return render_template('announcement.html', announcement=current_announcement)
 
 if __name__ == '__main__':
     main()

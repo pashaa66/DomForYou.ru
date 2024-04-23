@@ -1,6 +1,7 @@
-import datetime
+import datetime as dt
 import sqlalchemy
 from .db_session import SqlAlchemyBase
+from sqlalchemy import orm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy_serializer import SerializerMixin
@@ -21,8 +22,9 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     deals = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)#R
     role = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    announcement = orm.relationship("Announcement", back_populates='user')
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
-                                     default=datetime.datetime.now)
+                                     default=dt.datetime.date(dt.datetime.now()))
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)

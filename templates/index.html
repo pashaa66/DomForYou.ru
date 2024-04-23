@@ -7,4 +7,14 @@
         <a class="btn btn-primary" href="/creating_an_advertisement">Создать объявление</a>
     {% endif %}
 {% endif %}
+{% for announcement in announcements %}
+    <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ announcement.title }}</h5>
+        <p class="card-text">Цена: {{ announcement.price }}</p>
+        <a href="{{ url_for('announcement', id=announcement.id) }}" class="btn btn-primary">Посмотреть объявление</a>
+    </div>
+</div>
+    {% endfor %}
 {% endblock %}

@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Создание объявления</h1>
+<h2>В разработке</h2>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+
+    <p>
+        {{ form.announcement_type.label }}<br>
+        {{ form.announcement_type(class="form-control") }}<br>
+        {% for error in form.announcement_type.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+
+    <p>
+        {{ form.title.label }}<br>
+        {{ form.title(class="form-control") }}<br>
+        {% for error in form.title.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ form.location.label }}<br>
+        {{ form.location(class="form-control") }}<br>
+        {% for error in form.location.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+
+    <p>
+        {{ form.price.label }}<br>
+        {{ form.price(class="form-control") }}<br>
+        {% for error in form.price.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+
+    <p>
+        {{ form.description.label }}<br>
+        {{ form.description(class="form-control") }}<br>
+        {% for error in form.description.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ form.square.label }}<br>
+        {{ form.square(class="form-control") }}<br>
+        {% for error in form.square.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ form.number_of_rooms.label }}<br>
+        {{ form.number_of_rooms(class="form-control") }}<br>
+        {% for error in form.number_of_rooms.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+        {% endfor %}
+    </p>
+
+
+    <div id="floor-field" style="display: block;">
+        <p>
+            {{ form.floor.label }}<br>
+            {{ form.floor(class="form-control") }}<br>
+            {% for error in form.floor.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+           {% endfor %}
+        </p>
+    </div>
+
+    <div id="kitchen-square-field" style="display: block;">
+        <p>
+            {{ form.kitchen_square.label }}<br>
+            {{ form.kitchen_square(class="form-control") }}<br>
+            {% for error in form.kitchen_square.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+           {% endfor %}
+        </p>
+    </div>
+
+    <div id="number-of-floors-field" style="display: none;">
+        <p>
+            {{ form.number_of_floors.label }}<br>
+            {{ form.number_of_floors(class="form-control") }}<br>
+            {% for error in form.number_of_floors.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+           {% endfor %}
+        </p>
+    </div>
+
+    <p>
+        {{ form.files.label }}<br>
+        {{ form.files(class="form-control", type="file", multiple="multiple") }}<br>
+        {% for error in form.files.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    </p>
+
+    <p>{{ form.is_sell() }} {{ form.is_sell.label }}</p>
+
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{message}}
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var announcementTypeFiled = document.getElementById("advertisement_type");
+    var floorField = document.getElementById("floor-field");
+    var kitchenSquareField = document.getElementById("kitchen-square-field");
+
+    announcementTypeFiled.addEventListener('change', function() {
+        if (announcementTypeFiled.value === 'flat') {
+            kitchenSquareField.style.display = 'block';
+            floorField.style.display = 'block';
+        } else if (announcementTypeFiled.value === 'house') {
+            floorField.style.display = 'none';
+            kitchenSquareField.style.display = 'none';
+        }
+    });
+});
+</script>
+{% endblock %}
