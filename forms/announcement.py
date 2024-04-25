@@ -13,11 +13,11 @@ class CreateAnnouncementForm(FlaskForm):
     advertisement_type = SelectField('Тип объявления', choices=[('flat', 'Квартира'), ('house', 'Дом')],
                                      validators=[DataRequired()])
     square = FloatField('Площадь', validators=[DataRequired()])
-    kitchen_square = FloatField('Площадь кухни', validators=[DataRequired()])
+    kitchen_square = FloatField('Площадь кухни', validators=[DataRequired()], optional=True)
     number_of_rooms = IntegerField('Количество комнат', validators=[DataRequired()])
-    floor = IntegerField('Этаж', validators=[DataRequired()])
-    number_of_floors = IntegerField('Этажи', validators=[DataRequired()])
-    year_of_construction = IntegerField('Год постройки', validators=[DataRequired()])
+    floor = IntegerField('Этаж', validators=[DataRequired()], optional=True)
+    number_of_floors = IntegerField('Этажи', validators=[DataRequired()], optional=True)
+    year_of_construction = IntegerField('Год постройки', validators=[DataRequired()], optional=True)
     file = FileField('Фотография', validators=[FileRequired(), FileAllowed(['jpg', 'png'],
                                                                            'Только изображения')])
     is_sell = BooleanField('Продаётся')

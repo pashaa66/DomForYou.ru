@@ -1,6 +1,6 @@
 from wtforms.validators import ValidationError
 
-def check_phone(field):
+def check_phone(form, field):
     phone_number = ''.join(field.data.split())
     if any(map(lambda symbl: symbl.isalpha(), phone_number)):
         raise ValidationError('неверный формат')

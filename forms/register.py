@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, SubmitField, EmailField, StringField, IntegerField, TelField
 from wtforms.validators import DataRequired
+from forms.custom_validators import check_phone
 
 
 class RegisterFormUser(FlaskForm):
@@ -18,7 +19,7 @@ class RegisterFormRealtor(FlaskForm):
     surname = StringField('Фамилия риэлтора', validators=[DataRequired()])
     age = IntegerField('Возраст риэлтора', validators=[DataRequired()])
     email = EmailField('Почта', validators=[DataRequired()])
-    phone_number = TelField('Номер телефона', validators=[DataRequired()])
+    phone_number = TelField('Номер телефона', validators=[DataRequired(), check_phone])
     experience = IntegerField('Стаж работы', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired()])
     password_again = PasswordField('Повторите пароль', validators=[DataRequired()])

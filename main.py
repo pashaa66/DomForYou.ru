@@ -1,20 +1,24 @@
 from flask import Flask, render_template, redirect, request, abort
 from data import db_session
+import os
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from data.users import User
 # from data.announcements import Announcement
 from forms.login import LoginForm
 from forms.announcement import CreateAnnouncementForm
 from forms.register import RegisterFormUser, RegisterFormRealtor
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 login_manager = LoginManager()
 login_manager.init_app(app)
-
+UPLOAD_FOLDER = '/static/img'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def main():
     db_session.global_init("db/domforyou.db")
+    db_session.create_session()
     app.run(debug=True)
 
 
@@ -46,7 +50,10 @@ def register():
 def creating_an_advertisement():
     form = CreateAnnouncementForm()
     if form.validate_on_submit():
-        print(form.files.data, form.title.data, form.price.data, form.advertisement_type.data)
+        # file = form.file.data
+        # filename = secure_filename(file.filename)
+        # file.save(os.path.join(app.instance_path, 'static/img/img_announcement', filename))
+        print(form.data)
         return redirect("/")
     return render_template('creating_an_announcement.html', title='Создание объявления', form=form)
 @app.route('/login', methods=['GET', 'POST'])
