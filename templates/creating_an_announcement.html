@@ -2,8 +2,7 @@
 
 {% block content %}
 <h1>Создание объявления</h1>
-<h2>В разработке</h2>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     {{ form.hidden_tag() }}
 
     <p>
@@ -113,6 +112,18 @@
         </p>
     </div>
 
+    <div id="year-of-construction-field" style="display: none;">
+        <p>
+            {{ form.number_of_floors.label }}<br>
+            {{ form.number_of_floors(class="form-control") }}<br>
+            {% for error in form.number_of_floors.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+           {% endfor %}
+        </p>
+    </div>
+
     <p>
         {{ form.files.label }}<br>
         {{ form.files(class="form-control", type="file", multiple="multiple") }}<br>
@@ -131,17 +142,24 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    var announcementTypeFiled = document.getElementById("advertisement_type");
+    var announcementTypeFiled = document.getElementById("announcement_type");
     var floorField = document.getElementById("floor-field");
     var kitchenSquareField = document.getElementById("kitchen-square-field");
+    var numberOfFloorsField = document.getElementById("number-of-floors-field");
+    var yearOfConstructionField = document.getElementById("year-of-construction-field");
+
 
     announcementTypeFiled.addEventListener('change', function() {
         if (announcementTypeFiled.value === 'flat') {
             kitchenSquareField.style.display = 'block';
             floorField.style.display = 'block';
+            numberOfFloorsField.style.display = 'none';
+            yearOfConstructionField.style.display = 'none';
         } else if (announcementTypeFiled.value === 'house') {
             floorField.style.display = 'none';
             kitchenSquareField.style.display = 'none';
+            numberOfFloorsField.style.display = 'block';
+            yearOfConstructionField.style.display = 'block';
         }
     });
 });

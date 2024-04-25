@@ -20,6 +20,7 @@ class Announcement(SqlAlchemyBase):
     floor = sqlalchemy.Column(sqlalchemy.Integer, nullable=True) # flat
     number_of_floors = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)#house
     year_of_construction = sqlalchemy.Column(sqlalchemy.Integer, nullable=True) # house
+    path_to_photo = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     realtor_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("user.id"))
     realtor = orm.relationship("User")
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
