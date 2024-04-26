@@ -1,0 +1,20 @@
+div.content_display_list {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #9afcd8;
+}
+
+body {
+  background-color: #9afcd8
+
+}
+
+div.card {
+    background-color: #5dd4f5
+}
+
+h1{
+    text-align: center
+}

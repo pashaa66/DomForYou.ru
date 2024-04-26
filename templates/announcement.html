@@ -2,6 +2,19 @@
 
 {% block content %}
     <h1>{{ announcement.title }}</h1>
-    <p>Цена: {{ announcement.price }}</p>
-    <p>{{ announcement.description }}</p>
+    <img src="{{  url_for('static', filename=announcement.path_to_photo)}}" alt="Image">
+    <h2>Цена: {{ announcement.price }}₽</h2>
+    <h2>Описание: {{ announcement.description }}</h2>
+    <h2>Площадь: {{ announcement.square }}м²</h2>
+    <h2>Количество комнат: {{ announcement.number_of_rooms }}</h2>
+    {% if announcement.announcement_type == 'flat' %}
+        <h2>Площадь кухни: {{ announcement.kitchen_square }}м²</h2>
+        <h2>Этаж: {{ announcement.floor }}</h2>
+        {% else %}
+        <h2>Этажей в доме: {{ announcement.number_of_floors }}</h2>
+        <h2>Год постройки: {{ announcement.year_of_construction }}</h2>
+    {% endif %}
+    <h1>Расположение</h1>
+    <h2>Адрес: {{ announcement.location }}</h2>
+
 {% endblock %}

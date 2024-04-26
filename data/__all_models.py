@@ -1,2 +1,2 @@
 from . import users
-# from . import announcements
+from . import announcements

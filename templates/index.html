@@ -2,19 +2,27 @@
 
 {% block content %}
 <h1>Объявления</h1>
-{% if current_user.is_authenticated %}
+<div class="content_display_list">
+    {% if current_user.is_authenticated %}
     {% if current_user.role == 'realtor' %}
-        <a class="btn btn-primary" href="/creating_an_announcement">Создать объявление</a>
+    <a class="btn btn-primary" href="/creating_an_announcement">Создать объявление</a>
     {% endif %}
-{% endif %}
-{% for announcement in announcements %}
+    {% endif %}
+    {% for announcement in announcements %}
     <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">{{ announcement.title }}</h5>
-        <p class="card-text">Цена: {{ announcement.price }}</p>
-        <a href="{{ url_for('announcement', id=announcement.id) }}" class="btn btn-primary">Посмотреть объявление</a>
+        <img src="{{  url_for('static', filename=announcement.path_to_photo)}}" class="card-img-top" alt="Image">
+        <div class="card-body">
+            <h5 class="card-title">{{ announcement.title }}</h5>
+            <p class="card-text">Цена: {{ announcement.price }}₽</p>
+            <p class="card-text">Расположение: {{ announcement.location }}</p>
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('announcement', id=announcement.id) }}" class="btn btn-primary">Посмотреть
+                объявление</a>
+            {% else %}
+            <h5>Для просмотра объявления необходимо авторизироваться</h5>
+            {% endif %}
+        </div>
     </div>
-</div>
     {% endfor %}
+</div>
 {% endblock %}
