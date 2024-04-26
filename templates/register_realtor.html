@@ -6,7 +6,7 @@
     {{ form.hidden_tag() }}
     <p>
         {{ form.name.label }}<br>
-        {{ form.name(class="form-control") }}<br>
+        {{ form.name(class="form-control", autocomplete="off") }}<br>
         {% for error in form.name.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -15,7 +15,7 @@
     </p>
     <p>
         {{ form.surname.label }}<br>
-        {{ form.surname(class="form-control") }}<br>
+        {{ form.surname(class="form-control", autocomplete="off") }}<br>
         {% for error in form.surname.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -24,7 +24,7 @@
     </p>
     <p>
         {{ form.age.label }}<br>
-        {{ form.age(class="form-control") }}<br>
+        {{ form.age(class="form-control", autocomplete="off") }}<br>
         {% for error in form.age.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -33,7 +33,7 @@
     </p>
     <p>
         {{ form.email.label }}<br>
-        {{ form.email(class="form-control", type="email") }}<br>
+        {{ form.email(class="form-control", type="email", placeholder="name@example.com/ru", autocomplete="off") }}<br>
         {% for error in form.email.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -42,7 +42,7 @@
     </p>
     <p>
         {{ form.phone_number.label }}<br>
-        {{ form.phone_number(class="form-control", type="tel") }}<br>
+        {{ form.phone_number(class="form-control", type="tel", autocomplete="off") }}<br>
         {% for error in form.phone_number.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -51,7 +51,7 @@
     </p>
     <p>
         {{ form.experience.label }}<br>
-        {{ form.experience(class="form-control") }}<br>
+        {{ form.experience(class="form-control", autocomplete="off") }}<br>
         {% for error in form.experience.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -60,7 +60,7 @@
     </p>
     <p>
         {{ form.password.label }}<br>
-        {{ form.password(class="form-control", type="password") }}<br>
+        {{ form.password(class="form-control", type="password", autocomplete="off") }}<br>
         {% for error in form.password.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -69,7 +69,7 @@
     </p>
     <p>
         {{ form.password_again.label }}<br>
-        {{ form.password_again(class="form-control", type="password") }}<br>
+        {{ form.password_again(class="form-control", type="password", autocomplete="off") }}<br>
         {% for error in form.password_again.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}

@@ -22,7 +22,7 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     deals = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)#R
     role = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    # announcement = orm.relationship("Announcement", back_populates='user')
+    announcement = orm.relationship("Announcement", back_populates='user')
     created_date = sqlalchemy.Column(sqlalchemy.DateTime,
                                      default=dt.datetime.date(dt.datetime.now()))
 

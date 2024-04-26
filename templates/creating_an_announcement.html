@@ -17,7 +17,7 @@
 
     <p>
         {{ form.title.label }}<br>
-        {{ form.title(class="form-control") }}<br>
+        {{ form.title(class="form-control", autocomplete="off") }}<br>
         {% for error in form.title.errors %}
     <div class="alert alert-danger" role="alert">
         {{ error }}
@@ -26,9 +26,9 @@
     </p>
 
     <p>
-        {{ form.location.label }}<br>
-        {{ form.location(class="form-control") }}<br>
-        {% for error in form.location.errors %}
+        {{ form.city.label }}<br>
+        {{ form.city(class="form-control", autocomplete="off") }}<br>
+        {% for error in form.city.errors %}
     <div class="alert alert-danger" role="alert">
         {{ error }}
     </div>
@@ -36,8 +36,29 @@
     </p>
 
     <p>
+        {{ form.street.label }}<br>
+        {{ form.street(class="form-control", autocomplete="off") }}<br>
+        {% for error in form.street.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+
+    <p>
+        {{ form.number_of_house.label }}<br>
+        {{ form.number_of_house(class="form-control", autocomplete="off") }}<br>
+        {% for error in form.number_of_house.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    </p>
+
+
+    <p>
         {{ form.price.label }}<br>
-        {{ form.price(class="form-control") }}<br>
+        {{ form.price(class="form-control", autocomplete="off") }}<br>
         {% for error in form.price.errors %}
     <div class="alert alert-danger" role="alert">
         {{ error }}
@@ -45,9 +66,10 @@
     {% endfor %}
     </p>
 
+
     <p>
         {{ form.description.label }}<br>
-        {{ form.description(class="form-control") }}<br>
+        {{ form.description(class="form-control", autocomplete="off") }}<br>
         {% for error in form.description.errors %}
     <div class="alert alert-danger" role="alert">
         {{ error }}
@@ -57,7 +79,7 @@
 
     <p>
         {{ form.square.label }}<br>
-        {{ form.square(class="form-control") }}<br>
+        {{ form.square(class="form-control", autocomplete="off") }}<br>
         {% for error in form.square.errors %}
     <div class="alert alert-danger" role="alert">
         {{ error }}
@@ -67,7 +89,7 @@
 
     <p>
         {{ form.number_of_rooms.label }}<br>
-        {{ form.number_of_rooms(class="form-control") }}<br>
+        {{ form.number_of_rooms(class="form-control", autocomplete="off") }}<br>
         {% for error in form.number_of_rooms.errors %}
     <div class="alert alert-danger" role="alert">
         {{ error }}
@@ -79,7 +101,7 @@
     <div id="floor-field" style="display: block;">
         <p>
             {{ form.floor.label }}<br>
-            {{ form.floor(class="form-control") }}<br>
+            {{ form.floor(class="form-control", autocomplete="off") }}<br>
             {% for error in form.floor.errors %}
         <div class="alert alert-danger" role="alert">
             {{ error }}
@@ -91,7 +113,7 @@
     <div id="kitchen-square-field" style="display: block;">
         <p>
             {{ form.kitchen_square.label }}<br>
-            {{ form.kitchen_square(class="form-control") }}<br>
+            {{ form.kitchen_square(class="form-control", autocomplete="off") }}<br>
             {% for error in form.kitchen_square.errors %}
         <div class="alert alert-danger" role="alert">
             {{ error }}
@@ -103,7 +125,7 @@
     <div id="number-of-floors-field" style="display: none;">
         <p>
             {{ form.number_of_floors.label }}<br>
-            {{ form.number_of_floors(class="form-control") }}<br>
+            {{ form.number_of_floors(class="form-control", autocomplete="off") }}<br>
             {% for error in form.number_of_floors.errors %}
         <div class="alert alert-danger" role="alert">
             {{ error }}
@@ -114,9 +136,9 @@
 
     <div id="year-of-construction-field" style="display: none;">
         <p>
-            {{ form.number_of_floors.label }}<br>
-            {{ form.number_of_floors(class="form-control") }}<br>
-            {% for error in form.number_of_floors.errors %}
+            {{ form.year_of_construction.label }}<br>
+            {{ form.year_of_construction(class="form-control", autocomplete="off") }}<br>
+            {% for error in form.year_of_construction.errors %}
         <div class="alert alert-danger" role="alert">
             {{ error }}
         </div>
@@ -125,9 +147,9 @@
     </div>
 
     <p>
-        {{ form.files.label }}<br>
-        {{ form.files(class="form-control", type="file", multiple="multiple") }}<br>
-        {% for error in form.files.errors %}
+        {{ form.photo.label }}<br>
+        {{ form.photo(class="form-control", type="file") }}<br>
+        {% for error in form.photo.errors %}
             <div class="alert alert-danger" role="alert">
                 {{ error }}
             </div>
