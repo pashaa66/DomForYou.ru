@@ -4,7 +4,7 @@
 <h1>Объявления</h1>
 {% if current_user.is_authenticated %}
     {% if current_user.role == 'realtor' %}
-        <a class="btn btn-primary" href="/creating_an_advertisement">Создать объявление</a>
+        <a class="btn btn-primary" href="/creating_an_announcement">Создать объявление</a>
     {% endif %}
 {% endif %}
 {% for announcement in announcements %}
